@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     Copyright 2017 Serpent Consulting Services Pvt. Ltd.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+    <data noupdate="1">
+
+        <record id="purchase_minimum_value_block_reason" model="purchase.block.reason">
+            <field name="name">Minimum Purchase Order Value per Vendor</field>
+            <field name="description">Set total amount for the specific vendor for the PO</field>
+            <field name="active" eval="True"/>
+        </record>
+
+    </data>
+</odoo>

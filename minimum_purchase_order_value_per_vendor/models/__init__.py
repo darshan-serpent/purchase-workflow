@@ -3,4 +3,5 @@
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from . import models
+from . import purchase_order
+from . import partner
