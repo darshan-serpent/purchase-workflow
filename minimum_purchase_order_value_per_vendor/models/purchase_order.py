@@ -31,7 +31,7 @@ class PurchaseOrder(models.Model):
                                      'purchase_minimum_value_block_reason')
         for order in self:
             if order.po_block_id == min_po_amount and\
-                    order.minimum_po_amount < order.amount_untaxed:
+                    order.minimum_po_amount <= order.amount_untaxed:
                 order.po_amount_check = True
             else:
                 order.po_amount_check = False
