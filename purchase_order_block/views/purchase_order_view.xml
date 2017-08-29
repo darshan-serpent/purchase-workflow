@@ -20,7 +20,8 @@
                         string="Release blocked RFQ"
                         type="object" class="btn-primary"
                         groups="purchase_order_block.group_rfq_block"
-                        attrs="{'invisible': ['|','|',('po_block_id', '=', False),('state', 'not in', ['draft', 'sent', 'to approve']),('released', '=', True)]}"/>
+                        attrs="{'invisible': ['|','|',('po_block_id', '=', False),
+                        ('state', 'not in', ['draft', 'sent', 'to approve']),('released', '=', True)]}"/>
             </xpath>
         </field>
     </record>

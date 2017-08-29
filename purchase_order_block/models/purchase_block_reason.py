@@ -11,4 +11,4 @@ class PurchaseBlockReason(models.Model):
 
     name = fields.Char(required=True)
     description = fields.Text()
-    active = fields.Boolean('Active', default=True)
+    active = fields.Boolean(default=True)
