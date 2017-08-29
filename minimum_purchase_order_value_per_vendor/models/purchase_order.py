@@ -25,6 +25,13 @@ class PurchaseOrder(models.Model):
                                      store=True)
 
     @api.multi
+    def _track_subtype(self, init_values):
+        for rec in self:
+            if rec.po_amount_check:
+                return 'minimum_purchase_order_value_per_vendor.mt_request_to_release'
+        return super(PurchaseOrder, self)._track_subtype(init_values)
+
+    @api.multi
     @api.depends('minimum_po_amount', 'amount_untaxed', 'po_block_id')
     def _compute_po_amount_check(self):
         min_po_amount = self.env.ref('minimum_purchase_order_value_per_vendor.'
@@ -42,7 +49,7 @@ class PurchaseOrder(models.Model):
         min_po_amount = self.env.ref('minimum_purchase_order_value_per_vendor.'
                                      'purchase_minimum_value_block_reason')
         if self.po_block_id == min_po_amount and not self.\
-                po_amount_check:
+                po_amount_check and not self.released:
             return True
         elif self.po_block_id and self.po_block_id != min_po_amount and not\
                 self.released:

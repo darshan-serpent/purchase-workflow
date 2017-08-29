@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright 2017 Eficent Business and IT Consulting Services S.L.
+     Copyright 2017 Serpent Consulting Services Pvt. Ltd.
+     License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl). -->
+<odoo>
+
+        <!-- Purchase Order Block Reason subtypes for messaging / Chatter -->
+        <record id="mt_request_to_release" model="mail.message.subtype">
+            <field name="name">Purchase Order Minimum Amount Block Released</field>
+            <field name="res_model">purchase.order</field>
+            <field name="default" eval="True"/>
+            <field name="description">Order with block Minimum Purchase Order Value per Vendor has now been released.</field>
+        </record>
+
+</odoo>
