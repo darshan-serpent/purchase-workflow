@@ -16,13 +16,17 @@ class PurchaseOrder(models.Model):
 
     released = fields.Boolean(copy=False, readonly=True)
 
+    empty_check = fields.Boolean(copy=False, readonly=True)
+
     @api.model
     def create(self, vals):
         po = super(PurchaseOrder, self).create(vals)
-#        if po.po_block_id:
-#            po.message_post(body=_('Order \"%s\" blocked with reason'
-#                                   ' \"%s\"') % (po.name,
-#                                                 po.po_block_id.name))
+        if po.po_block_id:
+            po.message_post(body=_('Order \"%s\" blocked with reason'
+                                   ' \"%s\"') % (po.name,
+                                                 po.po_block_id.name))
+        else:
+            po.empty_check = True
         return po
 
     @api.multi
