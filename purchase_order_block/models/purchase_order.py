@@ -11,7 +11,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     po_block_id = fields.Many2one(
-        comodel_name='purchase.block.reason', track_visibility='always',
+        comodel_name='purchase.block.reason',
         string='Purchase Block Reason')
 
     released = fields.Boolean(copy=False, readonly=True)
@@ -19,9 +19,10 @@ class PurchaseOrder(models.Model):
     @api.model
     def create(self, vals):
         po = super(PurchaseOrder, self).create(vals)
-        po.message_post(body=_('Order \"%s\" blocked with'
-                               ' \"%s\"') % (po.name,
-                                             po.po_block_id.name))
+#        if po.po_block_id:
+#            po.message_post(body=_('Order \"%s\" blocked with reason'
+#                                   ' \"%s\"') % (po.name,
+#                                                 po.po_block_id.name))
         return po
 
     @api.multi
