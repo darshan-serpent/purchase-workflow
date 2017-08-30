@@ -11,7 +11,7 @@ class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
 
     po_block_id = fields.Many2one(
-        comodel_name='purchase.block.reason', track_visibility='always',
+        comodel_name='purchase.block.reason',
         string='Purchase Block Reason',
         default=lambda self: self.env.\
         ref('minimum_purchase_order_value_per_vendor.'
@@ -24,18 +24,23 @@ class PurchaseOrder(models.Model):
     po_amount_check = fields.Boolean(compute='_compute_po_amount_check',
                                      store=True)
 
+    flag_check = fields.Boolean()
+
     @api.multi
     def _track_subtype(self, init_values):
         for rec in self:
-            if rec.po_amount_check:
-                return 'minimum_purchase_order_value_per_vendor.mt_request_to_release'
+            if rec.po_amount_check and not rec.flag_check:
+                rec.flag_check = True
+                return 'minimum_purchase_order_value_per_vendor.'\
+                    'mt_request_to_release'
         return super(PurchaseOrder, self)._track_subtype(init_values)
 
     @api.multi
     @api.depends('minimum_po_amount', 'amount_untaxed', 'po_block_id')
     def _compute_po_amount_check(self):
         min_po_amount = self.env.ref('minimum_purchase_order_value_per_vendor.'
-                                     'purchase_minimum_value_block_reason')
+                                     'purchase_minimum_value_block_reason',
+                                     raise_if_not_found=False)
         for order in self:
             if order.po_block_id == min_po_amount and\
                     order.minimum_po_amount <= order.amount_untaxed:
