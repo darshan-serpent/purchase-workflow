@@ -9,12 +9,14 @@
     "version": "10.0.1.0.0",
     "category": "Purchase Management",
     "website": "http://www.eficent.com",
-    "depends": ['purchase',
+    "depends": [
+        'purchase',
     ],
-    "data": ['security/ir.model.access.csv',
-             'security/purchase_order_block_security.xml',
-             'views/purchase_block_reason_view.xml',
-             'views/purchase_order_view.xml',
+    "data": [
+        'security/ir.model.access.csv',
+        'security/purchase_order_block_security.xml',
+        'views/purchase_block_reason_view.xml',
+        'views/purchase_order_view.xml',
     ],
     "license": 'LGPL-3',
     "installable": True

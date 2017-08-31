@@ -33,7 +33,7 @@ class PurchaseOrder(models.Model):
     def button_release_block(self):
         for order in self:
             order.\
-                message_post(body=_('Order \"%s\" with block \"%s\" has now '
+                message_post(body=_('Order \"%s\" with block \"%s\" is now '
                                     'released') % (order.name,
                                                    order.po_block_id.name))
             order.released = True
@@ -51,5 +51,5 @@ class PurchaseOrder(models.Model):
                 raise ValidationError(
                     _('The RFQ is blocked, due to \'%s\'. You will need to'
                       ' request it to be released by an authorized user.')
-                                      % order.po_block_id.name)
+                    % order.po_block_id.name)
         return super(PurchaseOrder, self).button_confirm()

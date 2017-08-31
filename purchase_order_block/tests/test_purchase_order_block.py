@@ -20,7 +20,7 @@ class TestPurchaseOrderBlock(TransactionCase):
         # groups
         self.group_purchase_user = self.env.ref('purchase.group_purchase_user')
         self.group_release_po_block = self.env.ref('purchase_order_block.'
-                                                'group_rfq_block')
+                                                   'group_rfq_block')
         # Partner
         self.partner1 = self.env.ref('base.res_partner_1')
         # Products

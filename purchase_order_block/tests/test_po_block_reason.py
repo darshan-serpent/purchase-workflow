@@ -3,7 +3,8 @@
 # Copyright 2017 Serpent Consulting Services Pvt. Ltd.
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl.html).
 
-from odoo.addons.purchase_order_block.tests.test_purchase_order_block import TestPurchaseOrderBlock
+from odoo.addons.purchase_order_block.tests.test_purchase_order_block import \
+    TestPurchaseOrderBlock
 from odoo.exceptions import ValidationError
 
 

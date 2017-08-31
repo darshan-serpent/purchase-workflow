@@ -16,7 +16,7 @@ Configuration
   blocking reasons as needed, providing a name and a description. A field
   ‘Active’ allows you to deactivate the reason if you do not plan to use it
   any more.
-* Assign the security group “Release blocked RFQ” to users that should be able
+* Assign the security group 'Release blocked RFQ' to users that should be able
   to release the block.
 
 
@@ -25,46 +25,42 @@ Usage
 
 Set the purchase block
 ----------------------
-# Go to ‘Purchases / Purchase / Requests for Quotation’
-# Create a new RFQ and indicate the blocking reason (found in the right hand
-  side of the screen, below the order date). Upon save, the blocking is not
-  editable anymore, and a notification has been logged into the chatter,
-  indicating ‘Order blocked with reason xyz’, so that all followers can receive
-  it.
+
+#. Go to ‘Purchases / Purchase / Requests for Quotation’
+#. Create a new RFQ and indicate the blocking reason (found in the right hand
+   side of the screen, below the order date). Upon save, the blocking is not
+   editable anymore, and a notification has been logged into the chatter,
+   indicating ‘Order blocked with reason xyz’, so that all followers can receive
+   it.
 
 Search existing RFQ
 -------------------
+
 There is a filter ‘Blocked’ to search for orders that are blocked.
 It is also possible to search RFQ’s with a specific block reason.
 
 Release the purchase block
 --------------------------
-# Access to an existing RFQ that is blocked.
-# If your user is member of security group ‘Release blocked RFQ’, she/he will
-  see a button ‘Release block’. When pressing it a notification will be sent
-  to all the followers again, with message ‘Order with block xyz has now been
-  released’.
-# From this point and on, anyone seeing that RFQ will be able to validate it.
+
+#. Access to an existing RFQ that is blocked.
+#. If your user is member of security group ‘Release blocked RFQ’, she/he will
+   see a button ‘Release block’. When pressing it a notification will be sent
+   to all the followers again, with message ‘Order with block xyz has now been
+   released’.
+#. From this point and on, anyone seeing that RFQ will be able to validate it.
 
 Validate the RFQ
 ----------------
-# Press the button ‘Validate’. If there’s a block, and you do not have
+
+#. Press the button ‘Validate’. If there’s a block, and you do not have
   permissions, you will get an error message indicating that the RFQ is
   blocked, and the reason. You will need to request it to be released by an
   authorized user.
 
 
-Technical notes
-===============
-
-See Sale Delivery Block as an example:
-https://github.com/OCA/sale-workflow/tree/9.0/sale_delivery_block
-
-
 .. image:: https://odoo-community.org/website/image/ir.attachment/5784_f2813bd/datas
    :alt: Try me on Runbot
    :target: https://runbot.odoo-community.org/runbot/142/10.0
-
 
 Bug Tracker
 ===========
@@ -91,7 +87,7 @@ Maintainer
 
 .. image:: http://odoo-community.org/logo.png
    :alt: Odoo Community Association
-   :target: http://odoo-community.org
+   :target: https://odoo-community.org
 
 This module is maintained by the OCA.
 
