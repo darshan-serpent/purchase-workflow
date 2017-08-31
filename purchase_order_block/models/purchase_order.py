@@ -12,11 +12,9 @@ class PurchaseOrder(models.Model):
 
     po_block_id = fields.Many2one(
         comodel_name='purchase.block.reason',
-        string='Purchase Block Reason')
-
-    released = fields.Boolean(copy=False, readonly=True)
-
-    empty_check = fields.Boolean(copy=False, readonly=True)
+        string='Purchase Block Reason',
+        readonly=True,
+        states={'draft': [('readonly', False)]})
 
     @api.model
     def create(self, vals):
@@ -25,8 +23,6 @@ class PurchaseOrder(models.Model):
             po.message_post(body=_('Order \"%s\" blocked with reason'
                                    ' \"%s\"') % (po.name,
                                                  po.po_block_id.name))
-        else:
-            po.empty_check = True
         return po
 
     @api.multi
@@ -34,14 +30,14 @@ class PurchaseOrder(models.Model):
         for order in self:
             order.\
                 message_post(body=_('Order \"%s\" with block \"%s\" is now '
-                                    'released') % (order.name,
-                                                   order.po_block_id.name))
-            order.released = True
+                                    ' released') % (order.name,
+                                                    order.po_block_id.name))
+            order.po_block_id = False
 
     @api.multi
     def _check_order_release(self):
         self.ensure_one()
-        if self.po_block_id and not self.released:
+        if self.po_block_id:
             return True
 
     @api.multi
@@ -51,5 +47,5 @@ class PurchaseOrder(models.Model):
                 raise ValidationError(
                     _('The RFQ is blocked, due to \'%s\'. You will need to'
                       ' request it to be released by an authorized user.')
-                    % order.po_block_id.name)
+                                      % order.po_block_id.name)
         return super(PurchaseOrder, self).button_confirm()
